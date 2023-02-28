@@ -1,0 +1,57 @@
+h1 {
+    color: white;
+    font-weight: bold;
+    font-family: "Abel", sans-serif;
+}
+
+.btn {
+    font-family: "Abel", sans-serif;
+}
+
+.game {
+    margin: 15px 0px 15px 0px;
+}
+
+/* When screen is at MOST 767 px */
+@media only screen and (max-width: 767px) {
+    .game {
+        width: 300px;
+        height: 300px;
+    }
+
+    .overlay {
+        transform: translate(-50.1%, -51.75%);
+    }
+
+    h1 {
+        font-size: 50px;
+    }
+
+    div[id^="box"] {
+        font-size: 50px;
+    }
+
+    h1.winText {
+        font-size: 40px;
+    }
+}
+
+/* When screen is at LEAST 768 px */
+@media only screen and (min-width: 768px) {
+    .game {
+        width: 450px;
+        height: 450px;
+    }
+
+    .overlay {
+        transform: translate(-50%, -49.7%);
+    }
+
+    h1 {
+        font-size: 60px;
+    }
+
+    div[id^="box"] {
+        font-size: 75px;
+    }
+}
