@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Grid } from "./app/components/Grid";
 
 export const GameContext = React.createContext(null);
@@ -18,6 +18,7 @@ function App() {
         "",
         "",
     ]);
+    const [isWebBrowser, setIsWebBrowser] = useState(false);
 
     const resetGame = () => {
         setPlayer("X");
@@ -34,6 +35,12 @@ function App() {
     };
 
     const winningPlayer = playerWon === "X" ? "1" : "2";
+
+    useEffect(() => {
+        if (typeof window.orientation !== "undefined") {
+            setIsWebBrowser(true);
+        }
+    }, []);
 
     return (
         <div
@@ -58,44 +65,68 @@ function App() {
                     setWinningIds: setWinningIds,
                 }}
             >
-                <h1 style={{ textAlign: "center" }}>Tic-Tac-Toe</h1>
-                <div className="game" style={{ backgroundColor: "black" }}>
-                    {playerWon !== null && (
+                <h1
+                    className="title"
+                    style={{
+                        textAlign: "center",
+                        marginTop: isWebBrowser ? -80 : 0,
+                    }}
+                >
+                    Tic-Tac-Toe
+                </h1>
+                <div className="game"></div>
+                {playerWon !== null && (
+                    <div
+                        className="game"
+                        style={{
+                            backgroundColor: "black",
+                            position: "absolute",
+                            top: "50%",
+                            left: "50%",
+                            transform: "translate(-50%, -50%)",
+                            zIndex: 10,
+                            opacity: 0.75,
+                        }}
+                    >
                         <div
-                            className="game overlay"
                             style={{
-                                backgroundColor: "black",
-                                position: "absolute",
-                                top: "50%",
-                                left: "50%",
-                                zIndex: 100,
-                                opacity: 0.75,
+                                display: "flex",
+                                justifyContent: "center",
+                                alignItems: "center",
+                                cursor: "pointer",
+                                height: "100%",
                             }}
+                            onClick={() => resetGame()}
                         >
-                            <div
-                                style={{
-                                    display: "flex",
-                                    justifyContent: "center",
-                                    alignItems: "center",
-                                    cursor: "pointer",
-                                    height: "100%",
-                                }}
-                                onClick={() => resetGame()}
-                            >
-                                <h1 className="winText">
-                                    {playerWon === "DRAW"
-                                        ? "DRAW!"
-                                        : `Player ${winningPlayer} (${playerWon}) won!`}
-                                </h1>
-                            </div>
+                            <h1 className="winText">
+                                {playerWon === "DRAW"
+                                    ? "DRAW!"
+                                    : `Player ${winningPlayer} (${playerWon}) won!`}
+                            </h1>
                         </div>
-                    )}
+                    </div>
+                )}
+                <div
+                    className="game"
+                    style={{
+                        backgroundColor: "black",
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                    }}
+                >
                     <Grid />
                 </div>
-                <div style={{ marginTop: "10px" }}>
+                <div
+                    className="footer"
+                    style={{
+                        marginTop: "25px",
+                    }}
+                >
                     <button
                         type="button"
-                        class="btn btn-dark"
+                        className="btn btn-dark"
                         onClick={() => resetGame()}
                         style={{ marginRight: "15px" }}
                     >
@@ -103,8 +134,8 @@ function App() {
                     </button>
                     <button
                         type="button"
-                        class="btn btn-dark"
-                        onClick={() => alert("work in progress")}
+                        className="btn btn-dark"
+                        onClick={() => alert("Coming Soon!")}
                     >
                         Play against AI
                     </button>

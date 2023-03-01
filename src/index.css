@@ -12,15 +12,11 @@ h1 {
     margin: 15px 0px 15px 0px;
 }
 
-/* When screen is at MOST 767 px */
+/* When screen is LESS THAN 768 px */
 @media only screen and (max-width: 767px) {
     .game {
         width: 300px;
         height: 300px;
-    }
-
-    .overlay {
-        transform: translate(-50.1%, -51.75%);
     }
 
     h1 {
@@ -31,7 +27,7 @@ h1 {
         font-size: 50px;
     }
 
-    h1.winText {
+    .winText {
         font-size: 40px;
     }
 }
@@ -41,10 +37,6 @@ h1 {
     .game {
         width: 450px;
         height: 450px;
-    }
-
-    .overlay {
-        transform: translate(-50%, -49.7%);
     }
 
     h1 {
